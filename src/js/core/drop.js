@@ -1,7 +1,7 @@
 import Container from '../mixin/container';
 import Position from '../mixin/position';
 import Togglable from '../mixin/togglable';
-import {addClass, append, apply, css, hasClass, includes, isTouch, MouseTracker, offset, on, once, parent, pointerCancel, pointerDown, pointerEnter, pointerLeave, pointerUp, query, removeClass, toggleClass, within} from 'uikit-util';
+import {addClass, append, apply, css, hasClass, includes, isTouch, matches, MouseTracker, offset, on, once, parent, pointerCancel, pointerDown, pointerEnter, pointerLeave, pointerUp, query, removeClass, toggleClass, within} from 'uikit-util';
 
 export let active;
 
@@ -156,7 +156,9 @@ export default {
 
             handler(e) {
                 e.preventDefault();
-                this.hide();
+                if (!matches(this.$el, ':focus,:hover')) {
+                    this.hide();
+                }
             }
 
         },
